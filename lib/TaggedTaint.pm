@@ -1,6 +1,6 @@
 package TaggedTaint;
 
-use 
+use v5.44;  # for value magic
 use strict;
 use warnings;
 
@@ -161,7 +161,7 @@ of the given tags.
 
 Clears all tags from the TaggedTaint annotation on a given data value.
 
-=AUTHORS
+=head1 AUTHORS
 
 =over
 

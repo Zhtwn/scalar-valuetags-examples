@@ -28,7 +28,7 @@ my @security_labels = qw(
     public
 );
 
-my %security_label_indexes = map { $security_labels[$_] => $_ } 0 .. $#security_labels;
+my %security_label_indexes = reverse indexed @security_labels;
 
 sub get_security_label ( $var_ref ) {
     my $labels = get_value_tags( $vt_type, \%tags )
@@ -44,7 +44,7 @@ sub set_security_label ( $var_ref, $label ) {
 
 sub assert_security_access ( $var_ref, $access_label, $error = undef ) {
     my $security_label = get_security_label( $vt_type, $var_ref );
-    if ( $access_label < $security_label ) {
+    if ( $access_label < $security_label_index{$security_label} ) {
         die $error // "Invalid access: label $access_label may not access label $security_label";
     }
 }
